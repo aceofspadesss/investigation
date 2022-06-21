@@ -5,7 +5,10 @@ let formed_json = {
   userAgent: window.navigator.userAgent,
   screenWidth: window.screen.width,
   screenHeight: window.screen.height,
-  colorDepth: window.screen.colorDepth
+  colorDepth: window.screen.colorDepth,
+  deviceMemory: navigator.deviceMemory,
+  deviceCPUCores: navigator.hardwareConcurrency,
+
 }
 
 const accessAllowed = (callback) => {
@@ -30,3 +33,5 @@ const displayData = (object) => {
 }
 
 navigator.geolocation.getCurrentPosition(accessAllowed, accessDenied);
+
+console.log(URLSearchParams);
