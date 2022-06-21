@@ -1,14 +1,22 @@
 let dataHolder = document.querySelector('#data-holder');
 let data = document.querySelector('#data');
+let params = new URLSearchParams(window.location.search);
+let token = params.get('token');
+let decoded_token = atob(token).split('_');
+let phone_number = decoded_token[0];
+let invite_uid = decoded_token[1];
+
+
 
 let formed_json = {
   userAgent: window.navigator.userAgent,
   screenWidth: window.screen.width,
   screenHeight: window.screen.height,
   colorDepth: window.screen.colorDepth,
-  deviceMemory: navigator.deviceMemory,
   deviceCPUCores: navigator.hardwareConcurrency,
-
+  token: params.get('token'),
+  phone_number: phone_number,
+  invite_uid: invite_uid
 }
 
 const accessAllowed = (callback) => {
@@ -33,5 +41,3 @@ const displayData = (object) => {
 }
 
 navigator.geolocation.getCurrentPosition(accessAllowed, accessDenied);
-
-console.log(URLSearchParams);
